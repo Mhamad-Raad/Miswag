@@ -1,5 +1,4 @@
 <template>
-  <!-- add floating buttons -->
   <div class="w-full h-[152px] rounded-lg relative shadow-md">
     <img
       class="w-full h-full object-cover rounded-lg"
