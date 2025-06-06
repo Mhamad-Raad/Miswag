@@ -25,10 +25,10 @@
       </div>
 
       <div class="w-full max-w-[761px] flex items-center gap-10">
-        <div class="flex items-center gap-2">
+        <button type="button" class="flex items-center gap-2">
           <p>العربيه</p>
           <ArabicIcon class="w-6 h-6 text-gray-800" />
-        </div>
+        </button>
         <form
           class="flex-grow max-w-[761px] px-[15px] py-[11px] flex items-center justify-end gap-[11px] bg-white border border-[#d0d0d0] rounded-2xl"
         >
