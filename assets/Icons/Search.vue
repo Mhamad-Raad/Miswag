@@ -2,11 +2,22 @@
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    fill="currentColor"
+    fill="none"
     :class="iconClass"
   >
     <path
-      d="M10 2a8 8 0 105.29 14.29l5.21 5.21a1 1 0 001.42-1.42l-5.21-5.21A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"
+      d="M10.5938 18.1875C14.7877 18.1875 18.1875 14.7877 18.1875 10.5938C18.1875 6.39984 14.7877 3 10.5938 3C6.39984 3 3 6.39984 3 10.5938C3 14.7877 6.39984 18.1875 10.5938 18.1875Z"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M21 21L16.5 16.5"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     />
   </svg>
 </template>
@@ -15,7 +26,7 @@
 defineProps({
   iconClass: {
     type: String,
-    default: 'w-6 h-6 text-gray-600',
+    default: 'w-6 h-6 text-gray-800',
   },
 });
 </script>
