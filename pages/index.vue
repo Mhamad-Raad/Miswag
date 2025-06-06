@@ -1,5 +1,9 @@
 <template>
-  <div class="p-8">
-    <h1 class="text-3xl font-bold">This is the real Home Page</h1>
+  <div class="p-8 h-[100vh]">
+    <ProductList />
   </div>
 </template>
+
+<script setup>
+import ProductList from '~/components/home/ProductList.vue';
+</script>
