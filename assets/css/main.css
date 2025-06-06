@@ -1,1 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+button,
+a,
+input,
+textarea {
+  cursor: pointer;
+}
