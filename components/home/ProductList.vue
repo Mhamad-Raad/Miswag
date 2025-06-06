@@ -9,5 +9,5 @@
 </template>
 
 <script setup>
-import ProductItem from '~/components/home/ProductItem.vue';
+import ProductItem from '~/components/home/ProductItem/index.vue';
 </script>
