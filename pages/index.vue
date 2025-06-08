@@ -4,10 +4,10 @@
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
       <div v-for="(block, index) in contentBlocks" :key="index" class="mb-6">
-        <!-- <ProductList
+        <ProductList
           v-if="block.type === 'products'"
           :products="block.content"
-        /> -->
+        />
         <ImageGrid v-if="block.type === 'grid'" :grid="block" />
       </div>
     </div>

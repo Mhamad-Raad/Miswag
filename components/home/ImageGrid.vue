@@ -10,7 +10,7 @@
       :key="idx"
       :src="item.image"
       alt=""
-      class="rounded-lg"
+      class="w-full h-[204px]"
     />
   </div>
 </template>
