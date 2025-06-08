@@ -23,3 +23,11 @@ import ImageGrid from '~/components/home/ImageGrid.vue';
 
 const { contentBlocks, loading, error } = useHomeContent();
 </script>
+
+<!-- the followings need to be done -->
+
+<!-- add Modal -->
+<!-- add Skeleton loading (Modal as well)-->
+<!-- add functionality to favorites with local host -->
+<!-- add favorites page -->
+<!-- add functionality to search -->
