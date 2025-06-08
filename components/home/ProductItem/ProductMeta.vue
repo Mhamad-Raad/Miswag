@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col gap-2 text-sm text-[#575757] relative">
     <h3 class="text-right line-clamp-2" dir="rtl">
-      <span class="font-bold">ابل</span>
-      ساعة ابل ووتش سيريس 8 - 45 مللساعة ابل ووتش سيريس 8 - 45 ملل
+      <span class="font-bold">{{ product?.brand }}</span>
+      {{ product?.title }}
     </h3>
 
     <div class="flex flex-col justify-between gap-1 text-right">
