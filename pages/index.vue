@@ -7,6 +7,8 @@
         <ProductList
           v-if="block.type === 'products'"
           :products="block.content"
+          :properties="block.properties"
+          :key="block.id"
         />
         <ImageGrid v-if="block.type === 'grid'" :grid="block" />
       </div>
@@ -20,6 +22,4 @@ import ProductList from '~/components/home/ProductList.vue';
 import ImageGrid from '~/components/home/ImageGrid.vue';
 
 const { contentBlocks, loading, error } = useHomeContent();
-
-console.log('Home content:', contentBlocks);
 </script>
