@@ -31,3 +31,4 @@ const { contentBlocks, loading, error } = useHomeContent();
 <!-- add functionality to favorites with local host -->
 <!-- add favorites page -->
 <!-- add functionality to search -->
+<!-- add default variables to tailwind -->
