@@ -45,25 +45,16 @@
         </div>
       </div>
     </div>
-    <div
-      class="p-[2px] absolute bottom-0 left-0 bg-white flex flex-col items-center rounded-full shadow-md"
-    >
-      <div class="flex flex-col items-center -space-y-1">
-        <div
-          class="w-4 h-4 bg-[#e6e3dc] border border-[#f1f2f5] rounded-full z-20"
-        ></div>
-        <div
-          class="w-4 h-4 bg-[#ffA0a4] border border-[#f1f2f5] rounded-full z-10"
-        ></div>
-        <div
-          class="w-4 h-4 bg-[#067f9e] border border-[#f1f2f5] rounded-full"
-        ></div>
-      </div>
-      <p class="text-[9px] text-[#585252]">2+</p>
-    </div>
+    <ColorDots
+      v-if="properties?.shouldShowVariations && product?.colors?.length"
+      :colors="product.colors"
+      :max="3"
+    />
   </div>
 </template>
 <script setup>
+import ColorDots from './ColorDots.vue';
+
 import GiftIcon from '~/assets/Icons/Gift.vue';
 import BagIcon from '~/assets/Icons/Bag.vue';
 
