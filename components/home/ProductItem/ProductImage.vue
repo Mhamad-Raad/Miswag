@@ -6,11 +6,12 @@
       :src="product?.image"
       :alt="product?.name"
     />
-    <!-- discout badge -->
+    <!-- discout badge will change -->
     <p
+      v-if="discount > 0"
       class="absolute top-0 left-0 bg-[#d92d20] text-xs text-[#fcfcfc] font-bold rounded-full px-1 py-[2px]"
     >
-      -20%
+      {{ discount }}%
     </p>
     <!-- rate badge -->
     <div
@@ -33,7 +34,7 @@
     >
       <HeartIcon />
     </button>
-    <!-- add to cart button -->
+    <!-- add to cart button will change -->
     <button
       class="absolute bottom-0 right-0 bg-[#fcfcfc] text-sm text-[#575757] flex items-center justify-center p-2 rounded-lg"
     >
@@ -46,6 +47,7 @@
 import HeartIcon from '~/assets/Icons/Heart.vue';
 import AddToCartIcon from '~/assets/Icons/AddToCart.vue';
 import StarIcon from '~/assets/Icons/Star.vue';
+import { getDiscountPercentage } from '~/utils/discount';
 
 const props = defineProps({
   product: Object,
@@ -53,5 +55,9 @@ const props = defineProps({
 });
 
 const { product, properties } = props;
+const discount = getDiscountPercentage(
+  product?.price?.value,
+  product?.price?.originalValue
+);
 console.log('ProductImage props:', properties?.hasFavouriteBtn);
 </script>
