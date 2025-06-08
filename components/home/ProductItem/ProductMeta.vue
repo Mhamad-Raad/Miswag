@@ -5,9 +5,20 @@
       ساعة ابل ووتش سيريس 8 - 45 مللساعة ابل ووتش سيريس 8 - 45 ملل
     </h3>
 
-    <div class="flex flex-col justify-end gap-1 text-right">
-      <h3 class="text-sm text-[#141414] font-bold">650,000 د.ع</h3>
-      <h5 class="text-xs text-[#a5a5a5] line-through">1,300,000</h5>
+    <div class="flex flex-col justify-between gap-1 text-right">
+      <h3 class="text-sm text-[#141414] font-bold">
+        {{ `${price} ${product?.price?.currency}` }}
+      </h3>
+      <h5
+        class="text-xs text-[#a5a5a5] line-through"
+        v-show="product?.price?.originalValue !== product?.price?.value"
+      >
+        {{ `${originalPrice} ${product?.price?.currency}` }}
+      </h5>
+      <div
+        class="h-4"
+        v-show="product?.price?.originalValue === product?.price?.value"
+      ></div>
       <div class="flex items-center justify-end gap-[2px]">
         <p class="text-xs text-[#575757] font-semibold">هدية</p>
         <GiftIcon />
@@ -43,10 +54,14 @@
 import GiftIcon from '~/assets/Icons/Gift.vue';
 import BagIcon from '~/assets/Icons/Bag.vue';
 
+import { formatCurrency } from '~/utils/formatters';
+
 const props = defineProps({
   product: Object,
   properties: Object,
 });
 
 const { product, properties } = props;
+const price = formatCurrency(product?.price?.value);
+const originalPrice = formatCurrency(product?.price?.originalValue);
 </script>

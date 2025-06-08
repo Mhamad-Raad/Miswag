@@ -44,7 +44,7 @@
     >
       <HeartIcon />
     </button>
-    <!-- add to cart button will change -->
+    <!-- add to cart button -->
     <button
       class="absolute bottom-0 right-0 bg-[#fcfcfc] disabled:bg-red-400 text-sm text-[#575757] flex items-center justify-center p-2 rounded-lg"
       :disabled="!product.isAvailable"
@@ -66,6 +66,4 @@ const props = defineProps({
 });
 
 const { product, properties } = props;
-
-console.log('ProductImage props:', product?.startTag?.icon);
 </script>

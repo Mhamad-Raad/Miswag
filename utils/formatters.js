@@ -11,3 +11,13 @@ export function convertKeysToCamelCase(obj) {
     return acc;
   }, {});
 }
+
+export function formatCurrency(value, locale = 'en-US', currency = 'IQD') {
+  if (!value) return '0';
+
+  const number = Number(value);
+  return new Intl.NumberFormat(locale, {
+    style: 'decimal',
+    maximumFractionDigits: 0,
+  }).format(number);
+}
