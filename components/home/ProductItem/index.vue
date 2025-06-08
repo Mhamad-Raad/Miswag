@@ -2,8 +2,8 @@
   <div
     class="w-[167.5px] h-[316px] p-2 flex flex-col gap-3 bg-[#fcfcfc] border border-[#e8e8e8] rounded-lg"
   >
-    <ProductImage />
-    <ProductMeta />
+    <ProductImage :product="product" :properties="properties" />
+    <ProductMeta :product="product" :properties="properties" />
   </div>
 </template>
 
@@ -23,6 +23,5 @@ const props = defineProps({
 });
 
 const { product, properties } = props;
-
-console.log('ProductItem props:',{ product, properties});
+console.log('ProductItem props:', { product, properties });
 </script>

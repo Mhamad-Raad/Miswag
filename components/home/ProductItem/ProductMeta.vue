@@ -42,4 +42,11 @@
 <script setup>
 import GiftIcon from '~/assets/Icons/Gift.vue';
 import BagIcon from '~/assets/Icons/Bag.vue';
+
+const props = defineProps({
+  product: Object,
+  properties: Object,
+});
+
+const { product, properties } = props;
 </script>
