@@ -6,12 +6,22 @@
       :src="product?.image"
       :alt="product?.name"
     />
-    <!-- discout badge will change -->
+    <!-- discout badge -->
     <p
-      v-if="discount > 0"
-      class="absolute top-0 left-0 bg-[#d92d20] text-xs text-[#fcfcfc] font-bold rounded-full px-1 py-[2px]"
+      v-if="product?.startTag"
+      class="absolute top-0 left-0 text-xs font-bold rounded-full px-1 py-[2px] flex gap-2 items-center"
+      :style="{
+        backgroundColor: product?.startTag.bgColor,
+        color: product?.startTag.color,
+      }"
     >
-      {{ discount }}%
+      {{ product?.startTag.title }}
+      <img
+        :v-if="product?.startTag?.icon"
+        :src="product?.startTag?.icon"
+        alt="Limitied Offer"
+        class="w-4 h-4 brightness-200"
+      />
     </p>
     <!-- rate badge -->
     <div
@@ -36,7 +46,9 @@
     </button>
     <!-- add to cart button will change -->
     <button
-      class="absolute bottom-0 right-0 bg-[#fcfcfc] text-sm text-[#575757] flex items-center justify-center p-2 rounded-lg"
+      class="absolute bottom-0 right-0 bg-[#fcfcfc] disabled:bg-red-400 text-sm text-[#575757] flex items-center justify-center p-2 rounded-lg"
+      :disabled="!product.isAvailable"
+      :title="!product.isAvailable ? 'Out of stock' : ''"
     >
       <AddToCartIcon />
     </button>
@@ -47,7 +59,6 @@
 import HeartIcon from '~/assets/Icons/Heart.vue';
 import AddToCartIcon from '~/assets/Icons/AddToCart.vue';
 import StarIcon from '~/assets/Icons/Star.vue';
-import { getDiscountPercentage } from '~/utils/discount';
 
 const props = defineProps({
   product: Object,
@@ -55,9 +66,6 @@ const props = defineProps({
 });
 
 const { product, properties } = props;
-const discount = getDiscountPercentage(
-  product?.price?.value,
-  product?.price?.originalValue
-);
+
 console.log('ProductImage props:', properties?.hasFavouriteBtn);
 </script>
