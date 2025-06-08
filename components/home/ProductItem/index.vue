@@ -10,4 +10,19 @@
 <script setup>
 import ProductImage from './ProductImage.vue';
 import ProductMeta from './ProductMeta.vue';
+
+const props = defineProps({
+  product: {
+    type: Object,
+    required: true,
+  },
+  properties: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+
+const { product, properties } = props;
+
+console.log('ProductItem props:',{ product, properties});
 </script>

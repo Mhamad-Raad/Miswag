@@ -7,6 +7,7 @@
         v-for="(product, index) in props.products"
         :key="index"
         :product="product"
+        :properties="props.properties"
       />
     </div>
   </div>
