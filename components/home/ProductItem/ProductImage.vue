@@ -17,9 +17,9 @@
     >
       {{ product?.startTag.title }}
       <img
-        :v-if="product?.startTag?.icon"
-        :src="product?.startTag?.icon"
-        alt="Limitied Offer"
+        v-show="product?.startTag?.icon"
+        :src="product.startTag.icon"
+        alt="Limited Offer"
         class="w-4 h-4 brightness-200"
       />
     </p>
@@ -67,5 +67,5 @@ const props = defineProps({
 
 const { product, properties } = props;
 
-console.log('ProductImage props:', properties?.hasFavouriteBtn);
+console.log('ProductImage props:', product?.startTag?.icon);
 </script>
