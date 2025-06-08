@@ -25,10 +25,23 @@
       </div>
       <div class="flex justify-end w-full">
         <div
-          class="px-1 py-[3.5px] flex items-center gap-1 bg-[#1c1c1c] rounded-full w-fit mt-[2px]"
+          class="px-1 py-[3.5px] flex items-center gap-1 rounded-full w-fit mt-[2px]"
+          :style="{
+            backgroundColor: product?.merchant?.bgColor || '#00000',
+          }"
         >
-          <h6 class="text-xs text-[#fcfcfc] font-medium">GadgetHub</h6>
+          <h6 class="text-xs text-[#fcfcfc] font-medium">
+            {{ product?.merchant?.title }}
+          </h6>
+
           <BagIcon />
+          <!-- Uncomment the following line if you want to show the merchant icon, it is commented because the link provided does not work -->
+          <!-- <img
+            v-show="product?.merchant?.icon"
+            :src="product?.merchant?.icon"
+            alt="Merchant Icon"
+            class="w-4 h-4 rounded-full"
+          /> -->
         </div>
       </div>
     </div>
