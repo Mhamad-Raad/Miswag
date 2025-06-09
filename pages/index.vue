@@ -28,7 +28,7 @@ import { ref } from 'vue';
 import { useHomeContent } from '~/composables/useHomeContent';
 import ProductList from '~/components/home/ProductList.vue';
 import ImageGrid from '~/components/home/ImageGrid.vue';
-import ProductDetailsModal from '~/components/home/ProductDetailsModal.vue';
+import ProductDetailsModal from '~/components/ProductDetailsModal.vue';
 
 const { contentBlocks, loading, error } = useHomeContent();
 const selectedProduct = ref(null);

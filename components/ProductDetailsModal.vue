@@ -18,7 +18,22 @@
           </div>
 
           <div class="flex flex-col items-end gap-4 mt-10">
-            <h2 class="text-right text-black font-bold">:الألوان</h2>
+            <div class="flex items-center gap-2">
+              <h2 class="text-right text-black font-bold">:الألوان</h2>
+              <div class="flex gap-2">
+                <button
+                  v-for="(color, index) in product?.colors"
+                  :key="index"
+                  class="w-6 h-6 rounded-full border-2"
+                  :style="{ backgroundColor: color }"
+                  :class="{
+                    'border-red-500 ring ring-red-200': selectedColor === color,
+                    'border-[#f1f2f5]': selectedColor !== color,
+                  }"
+                  @click="selectedColor = color"
+                ></button>
+              </div>
+            </div>
             <img
               :src="product?.image"
               alt=""
@@ -33,7 +48,8 @@
               type="button"
               class="py-[10px] px-[25px] rounded-2xl border border-[#d22525] text-black font-semibold"
             >
-              {{ product?.size }}
+              <!-- {{ product?.size }} -->
+              Default
             </button>
           </div>
           <div class="flex items-baseline justify-between gap-4 mt-10">
@@ -72,13 +88,22 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 import XIcon from '~/assets/Icons/X.vue';
 import { formatCurrency } from '~/utils/formatters';
 
-defineProps({
+const selectedColor = ref(null);
+
+const { product, open, onClose } = defineProps({
   open: Boolean,
   product: Object,
   onClose: Function,
+});
+
+onMounted(() => {
+  if (Array.isArray(product?.colors) && product.colors.length > 0) {
+    selectedColor.value = product.colors[0];
+  }
 });
 </script>
 
