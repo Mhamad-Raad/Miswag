@@ -65,7 +65,7 @@ const filteredBlocks = computed(() => {
 
 <!-- the followings need to be done -->
 
-<!-- add Skeleton loading (Modal as well)-->
-<!-- add favorites page -->
-<!-- add functionality to search -->
+<!-- add Skeleton loading, error loading -->
+<!-- show how many items are in cart from local storage in the navbar -->
+<!-- add favorites page and show in the navbar -->
 <!-- add default variables to tailwind -->
