@@ -40,9 +40,16 @@
     <!-- favorite button -->
     <button
       v-if="properties?.hasFavouriteBtn"
+      @click.stop="handleFavorite"
       class="absolute top-0 right-0 bg-[#fcfcfc] flex items-center justify-center p-2 rounded-lg shadow-md"
     >
-      <HeartIcon />
+      <HeartIcon
+        :class="[
+          isFavorited(product.id)
+            ? 'text-red-500 fill-red-500'
+            : 'text-gray-400 fill-none',
+        ]"
+      />
     </button>
     <!-- add to cart button -->
     <button
@@ -56,9 +63,18 @@
 </template>
 
 <script setup>
+import { useFavorites } from '~/composables/useFavorites';
+
 import HeartIcon from '~/assets/Icons/Heart.vue';
 import AddToCartIcon from '~/assets/Icons/AddToCart.vue';
 import StarIcon from '~/assets/Icons/Star.vue';
+
+const { toggleFavorite, isFavorited } = useFavorites();
+
+const handleFavorite = (e) => {
+  e.stopPropagation();
+  toggleFavorite(props.product.id);
+};
 
 const props = defineProps({
   product: Object,
