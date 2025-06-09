@@ -1,0 +1,94 @@
+<template>
+  <Teleport to="body">
+    <transition name="fade">
+      <div
+        v-if="open"
+        class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+        @click.self="onClose"
+      >
+        <div class="bg-white px-6 py-[26px] rounded-2xl w-[613px] relative">
+          <div class="w-full flex justify-between items-center">
+            <button @click="onClose" class="text-gray-500 hover:text-black">
+              <XIcon />
+            </button>
+            <h3 class="text-right max-w-[520px] line-clamp-1 pt-5" dir="rtl">
+              <span class="font-bold">{{ product?.brand }}</span>
+              {{ product?.title }}
+            </h3>
+          </div>
+
+          <div class="flex flex-col items-end gap-4 mt-10">
+            <h2 class="text-right text-black font-bold">:الألوان</h2>
+            <img
+              :src="product?.image"
+              alt=""
+              class="w-[185px] h-[185px] rounded-lg border-2 border-[#f69393] object-cover"
+              :class="`aspect-[${parseFloat(properties?.imageRatio || '1')}/1]`"
+            />
+          </div>
+          <div class="flex flex-col items-end gap-4 mt-[5px]">
+            <h2 class="text-right text-black font-bold">:الحجم</h2>
+            <!-- repeat this if there were more options with a loop -->
+            <button
+              type="button"
+              class="py-[10px] px-[25px] rounded-2xl border border-[#d22525] text-black font-semibold"
+            >
+              {{ product?.size }}
+            </button>
+          </div>
+          <div class="flex items-baseline justify-between gap-4 mt-10">
+            <div class="flex gap-[18px] items-baseline">
+              <button
+                type="button"
+                class="py-[12px] px-[41.5px] text-[#e5223c] font-semibold border border-[#e5223c] rounded-2xl"
+                @click="onClose"
+              >
+                الغاء
+              </button>
+
+              <button
+                type="button"
+                class="py-[12px] px-[41.5px] text-white font-semibold bg-[#e5223c] rounded-2xl"
+                @click="onClose"
+              >
+                اضافة الى السلة
+              </button>
+            </div>
+            <p
+              class="text-[#141414] text-lg font-semibold border border-[#e7e5e5] rounded-xl px-[48.5px] py-3"
+            >
+              {{
+                `${product?.price?.currency} ${formatCurrency(
+                  product?.price?.value,
+                  product?.price?.currency
+                )}`
+              }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </Teleport>
+</template>
+
+<script setup>
+import XIcon from '~/assets/Icons/X.vue';
+import { formatCurrency } from '~/utils/formatters';
+
+defineProps({
+  open: Boolean,
+  product: Object,
+  onClose: Function,
+});
+</script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

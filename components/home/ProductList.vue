@@ -4,10 +4,11 @@
       class="w-[95%] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-5 content-center"
     >
       <ProductItem
-        v-for="(product, index) in props.products"
+        v-for="(product, index) in products"
         :key="index"
         :product="product"
-        :properties="props.properties"
+        :properties="properties"
+        @click="$emit('open-details', product)"
       />
     </div>
   </div>
