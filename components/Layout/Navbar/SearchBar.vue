@@ -4,6 +4,7 @@
   >
     <input
       type="text"
+      v-model="searchStore.query"
       placeholder="ابحث عن منتج او ماركة"
       class="w-full text-right"
     />
@@ -13,4 +14,8 @@
 
 <script setup>
 import SearchIcon from '~/assets/Icons/Search.vue';
+
+import { useSearchStore } from '~/stores/useSearchStore';
+
+const searchStore = useSearchStore();
 </script>
