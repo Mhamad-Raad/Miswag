@@ -40,7 +40,6 @@ const openProductModal = (product) => {
 
 <!-- the followings need to be done -->
 
-<!-- add Modal -->
 <!-- add Skeleton loading (Modal as well)-->
 <!-- add functionality to favorites with local host -->
 <!-- add favorites page -->
