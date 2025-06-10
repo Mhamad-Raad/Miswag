@@ -6,7 +6,7 @@
       type="text"
       v-model="searchStore.query"
       placeholder="ابحث عن منتج او ماركة"
-      class="w-full text-right outline-none"
+      class="w-full text-right"
     />
     <SearchIcon />
   </form>

@@ -8,8 +8,12 @@
 }
 
 button,
-a,
+a {
+  cursor: pointer;
+}
+
 input,
 textarea {
-  cursor: pointer;
+  cursor: caret;
+  outline: none;
 }
