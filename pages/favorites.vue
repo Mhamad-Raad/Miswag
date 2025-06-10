@@ -2,7 +2,6 @@
   <div class="p-8">
     <h1 class="text-2xl font-bold mb-6 text-right">المفضلة</h1>
 
-    <!-- Loading State -->
     <ProductList
       v-if="loading"
       :products="[]"
@@ -11,7 +10,6 @@
       @open-details="openProductModal"
     />
 
-    <!-- Empty State with animation -->
     <Transition name="fade-scale" appear>
       <div
         v-if="
@@ -26,7 +24,6 @@
       </div>
     </Transition>
 
-    <!-- Product List with animation -->
     <Transition name="fade-scale" appear>
       <div v-if="!loading && favoriteProducts.length > 0">
         <ProductList
@@ -38,7 +35,6 @@
       </div>
     </Transition>
 
-    <!-- Modal -->
     <ProductDetailsModal
       v-if="selectedProduct"
       :open="!!selectedProduct"

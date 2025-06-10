@@ -4,11 +4,19 @@
 
     <ImageGridSkeleton v-if="!readyToCheckEmptyState" count="1" cols="1" />
 
-    <div v-else-if="cartItems.length === 0" class="text-center py-10">
-      <EmptyState title="السلة فارغة" message="أضف بعض المنتجات لعرضها هنا." />
-    </div>
+    <Transition name="fade-scale" appear>
+      <div
+        v-if="readyToCheckEmptyState && cartItems.length === 0"
+        class="text-center py-10"
+      >
+        <EmptyState
+          title="السلة فارغة"
+          message="أضف بعض المنتجات لعرضها هنا."
+        />
+      </div>
+    </Transition>
 
-    <div v-else class="space-y-6">
+    <TransitionGroup name="fade-scale" tag="div" class="space-y-6" appear>
       <div
         v-for="item in cartItems"
         :key="item.id"
@@ -27,7 +35,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -51,8 +59,24 @@ onMounted(() => {
 });
 
 const cartItems = computed(() => cartStore.cart);
-
-const readyToCheckEmptyState = computed(() => {
-  return isLoaded.value;
-});
+const readyToCheckEmptyState = computed(() => isLoaded.value);
 </script>
+
+<style scoped>
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+  transition: all 0.4s ease;
+}
+.fade-scale-enter-from {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.fade-scale-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+</style>
