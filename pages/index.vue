@@ -1,16 +1,33 @@
 <template>
   <div class="p-8">
-    <div v-if="loading">Loading...</div>
+    <div v-if="loading" class="mb-6">
+      <ProductList
+        :products="[]"
+        :properties="{}"
+        @open-details="() => {}"
+        :loading="true"
+      />
+      <ImageGrid :grid="block" :loading="true" />
+    </div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
-      <div v-for="(block, index) in filteredBlocks" :key="index" class="mb-6">
+      <div
+        v-for="(block, index) in filteredBlocks"
+        :key="index"
+        :class="['mb-3', shouldApplyGridMargin(index) ? 'mt-[42px]' : '']"
+      >
         <ProductList
           v-if="block.type === 'products'"
           :products="block.content"
           :properties="block.properties"
           @open-details="openProductModal"
+          :loading="loading"
         />
-        <ImageGrid v-if="block.type === 'grid'" :grid="block" />
+        <ImageGrid
+          v-if="block.type === 'grid'"
+          :grid="block"
+          :loading="false"
+        />
       </div>
     </div>
 
@@ -61,11 +78,27 @@ const filteredBlocks = computed(() => {
     })
     .filter((block) => block.content.length > 0 || block.type === 'grid');
 });
+
+function shouldApplyGridMargin(index) {
+  const blocks = filteredBlocks.value;
+
+  const current = blocks[index];
+  const nextBlocks = blocks.slice(index + 1);
+  const prev = blocks[index - 1];
+
+  const allNextAreGrids = nextBlocks.every((b) => b.type === 'grid');
+
+  return (
+    current.type === 'grid' &&
+    allNextAreGrids &&
+    (!prev || prev.type !== 'grid')
+  );
+}
 </script>
 
 <!-- the followings need to be done -->
 
-<!-- add Skeleton loading, error loading -->
+<!-- error -->
 <!-- show how many items are in cart from local storage in the navbar -->
 <!-- add favorites page and show in the navbar -->
 <!-- add default variables to tailwind -->
