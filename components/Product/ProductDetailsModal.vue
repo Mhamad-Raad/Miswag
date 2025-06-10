@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <transition name="fade-scale">
+    <transition name="fade">
       <div
         v-if="open"
         class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
@@ -19,7 +19,7 @@
 
           <div class="flex flex-col items-end gap-4 mt-10">
             <div
-              v-if="product?.colors?.length > 0"
+              v-if="product?.colors.length > 0"
               class="flex items-center gap-2"
             >
               <div class="flex gap-2">
@@ -44,17 +44,17 @@
               :class="`aspect-[${parseFloat(properties?.imageRatio || '1')}/1]`"
             />
           </div>
-
           <div class="flex flex-col items-end gap-4 mt-[5px]">
             <h2 class="text-right text-black font-bold">:الحجم</h2>
+            <!-- repeat this if there were more options with a loop -->
             <button
               type="button"
               class="py-[10px] px-[25px] rounded-2xl border border-[#d22525] text-black font-semibold"
             >
+              <!-- {{ product?.size }} -->
               Default
             </button>
           </div>
-
           <div
             class="flex flex-col-reverse lg:flex-row items-baseline justify-between gap-4 mt-10"
           >
@@ -66,6 +66,7 @@
               >
                 الغاء
               </button>
+
               <button
                 type="button"
                 class="py-[12px] px-[41.5px] text-white font-semibold bg-primary rounded-2xl"
@@ -93,8 +94,11 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+
 import { useCartStore } from '~/stores/useCartStore';
+
 import XIcon from '~/assets/Icons/X.vue';
+
 import { formatCurrency } from '~/utils/formatters';
 
 const selectedColor = ref(null);
@@ -121,18 +125,12 @@ const handleAddToCart = () => {
 </script>
 
 <style scoped>
-.fade-scale-enter-active,
-.fade-scale-leave-active {
-  transition: all 0.25s ease;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
 }
-.fade-scale-enter-from,
-.fade-scale-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
-  transform: scale(0.95);
-}
-.fade-scale-enter-to,
-.fade-scale-leave-from {
-  opacity: 1;
-  transform: scale(1);
 }
 </style>
