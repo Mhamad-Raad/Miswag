@@ -1,49 +1,29 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-const FAVORITES_KEY = 'favoriteProducts';
+export const useFavoritesStore = defineStore('favorites', () => {
+  const favorites = ref([]);
 
-export const useFavoritesStore = defineStore('favorites', {
-  state: () => ({
-    favorites: new Set(),
-  }),
+  function load() {
+    if (process.client) {
+      const stored = localStorage.getItem('favoriteProducts');
+      favorites.value = stored ? JSON.parse(stored) : [];
+    }
+  }
 
-  getters: {
-    list: (state) => [...state.favorites],
-    isFavorited: (state) => (id) => state.favorites.has(id),
-  },
+  function toggle(id) {
+    const index = favorites.value.indexOf(id);
+    if (index === -1) {
+      favorites.value.push(id);
+    } else {
+      favorites.value.splice(index, 1);
+    }
+    localStorage.setItem('favoriteProducts', JSON.stringify(favorites.value));
+  }
 
-  actions: {
-    load() {
-      if (process.client) {
-        const stored = localStorage.getItem(FAVORITES_KEY);
-        if (stored) {
-          this.favorites = new Set(JSON.parse(stored));
-        }
-      }
-    },
-    save() {
-      if (process.client) {
-        localStorage.setItem(
-          FAVORITES_KEY,
-          JSON.stringify([...this.favorites])
-        );
-      }
-    },
-    toggle(id) {
-      if (this.favorites.has(id)) {
-        this.favorites.delete(id);
-      } else {
-        this.favorites.add(id);
-      }
-      this.save();
-    },
-    remove(id) {
-      this.favorites.delete(id);
-      this.save();
-    },
-    clear() {
-      this.favorites.clear();
-      this.save();
-    },
-  },
+  function isFavorited(id) {
+    return favorites.value.includes(id);
+  }
+
+  return { favorites, load, toggle, isFavorited };
 });
