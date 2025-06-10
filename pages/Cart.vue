@@ -2,7 +2,9 @@
   <div class="p-8">
     <h1 class="text-2xl font-bold mb-6 text-right">عربة التسوق</h1>
 
-    <div v-if="cartItems.length === 0" class="text-center py-10">
+    <ImageGridSkeleton v-if="!readyToCheckEmptyState" count="1" cols="1" />
+
+    <div v-else-if="cartItems.length === 0" class="text-center py-10">
       <EmptyState title="السلة فارغة" message="أضف بعض المنتجات لعرضها هنا." />
     </div>
 
@@ -30,16 +32,27 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 import { useCartStore } from '~/stores/useCartStore';
 import EmptyState from '~/components/UI/EmptyState.vue';
+import ImageGridSkeleton from '~/components/UI/ImageGridSkeleton.vue';
 
 import TrashIcon from '~/assets/Icons/TrashIcon.vue';
 import PlusIcon from '~/assets/Icons/PlusIcon.vue';
 import MinusIcon from '~/assets/Icons/MinusIcon.vue';
 
 const cartStore = useCartStore();
-onMounted(() => cartStore.load());
+const isLoaded = ref(false);
+
+onMounted(() => {
+  cartStore.load();
+  isLoaded.value = true;
+});
+
 const cartItems = computed(() => cartStore.cart);
+
+const readyToCheckEmptyState = computed(() => {
+  return isLoaded.value;
+});
 </script>

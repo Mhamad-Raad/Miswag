@@ -23,7 +23,7 @@
         <p class="text-xs text-[#575757] font-semibold">هدية</p>
         <GiftIcon />
       </div>
-      <div class="flex justify-end w-full">
+      <div class="w-full flex justify-end">
         <div
           class="px-1 py-[3.5px] flex items-center gap-1 rounded-full w-fit mt-[2px]"
           :style="{

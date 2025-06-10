@@ -7,11 +7,20 @@
         @open-details="() => {}"
         :loading="true"
       />
-      <ImageGrid :grid="block" :loading="true" />
+      <ImageGrid :grid="{ content: [] }" :loading="true" />
     </div>
+
     <div v-else-if="error">
       <ErrorState :message="error" @retry="retryLoad" />
     </div>
+
+    <div v-else-if="readyToCheckEmptyState && noProductBlocks">
+      <EmptyState
+        title="لا توجد منتجات"
+        message="لم يتم العثور على أي منتجات تطابق البحث."
+      />
+    </div>
+
     <div v-else>
       <div
         v-for="(block, index) in filteredBlocks"
@@ -23,10 +32,10 @@
           :products="block.content"
           :properties="block.properties"
           @open-details="openProductModal"
-          :loading="loading"
+          :loading="false"
         />
         <ImageGrid
-          v-if="block.type === 'grid'"
+          v-if="block.type === 'grid' && block?.content?.length"
           :grid="block"
           :loading="false"
         />
@@ -48,6 +57,7 @@ import { useHomeContent } from '~/composables/useHomeContent';
 import { useSearchStore } from '~/stores/useSearchStore';
 
 import ErrorState from '~/components/UI/ErrorState.vue';
+import EmptyState from '~/components/UI/EmptyState.vue';
 import ProductList from '~/components/home/ProductList.vue';
 import ImageGrid from '~/components/home/ImageGrid.vue';
 import ProductDetailsModal from '~/components/ProductDetailsModal.vue';
@@ -68,27 +78,34 @@ const filteredBlocks = computed(() => {
   const q = searchStore.query.toLowerCase().trim();
   if (!q) return contentBlocks.value;
 
-  return contentBlocks.value
-    .map((block) => {
-      if (block.type !== 'products') return block;
+  return contentBlocks.value.map((block) => {
+    if (block.type !== 'products') return block;
 
-      const filteredContent = block.content.filter((product) => {
-        const title = product.title?.toLowerCase() || '';
-        const brand = product.brand?.toLowerCase() || '';
-        return title.includes(q) || brand.includes(q);
-      });
+    const filteredContent = block.content.filter((product) => {
+      const title = product.title?.toLowerCase() || '';
+      const brand = product.brand?.toLowerCase() || '';
+      return title.includes(q) || brand.includes(q);
+    });
 
-      return {
-        ...block,
-        content: filteredContent,
-      };
-    })
-    .filter((block) => block.content.length > 0 || block.type === 'grid');
+    return {
+      ...block,
+      content: filteredContent,
+    };
+  });
+});
+
+const noProductBlocks = computed(() => {
+  return !filteredBlocks.value.some(
+    (block) => block.type === 'products' && block.content.length > 0
+  );
+});
+
+const readyToCheckEmptyState = computed(() => {
+  return !loading.value && contentBlocks.value.length > 0;
 });
 
 function shouldApplyGridMargin(index) {
   const blocks = filteredBlocks.value;
-
   const current = blocks[index];
   const nextBlocks = blocks.slice(index + 1);
   const prev = blocks[index - 1];
@@ -102,7 +119,3 @@ function shouldApplyGridMargin(index) {
   );
 }
 </script>
-
-<!-- the followings need to be done -->
-
-<!-- add empty state to home page -->
