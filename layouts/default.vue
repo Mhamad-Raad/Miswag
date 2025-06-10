@@ -2,7 +2,7 @@
   <div>
     <Navbar />
 
-    <main class="px-6 pt-36">
+    <main class="px-3 lg:px-6 pt-36">
       <slot></slot>
     </main>
   </div>

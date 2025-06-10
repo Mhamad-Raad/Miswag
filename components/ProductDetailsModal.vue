@@ -52,8 +52,10 @@
               Default
             </button>
           </div>
-          <div class="flex items-baseline justify-between gap-4 mt-10">
-            <div class="flex gap-[18px] items-baseline">
+          <div
+            class="flex flex-col-reverse lg:flex-row items-baseline justify-between gap-4 mt-10"
+          >
+            <div class="flex gap-[18px] items-baseline justify-end">
               <button
                 type="button"
                 class="py-[12px] px-[41.5px] text-primary font-semibold border border-primary rounded-2xl"
@@ -71,7 +73,7 @@
               </button>
             </div>
             <p
-              class="text-[#141414] text-lg font-semibold border border-[#e7e5e5] rounded-xl px-[48.5px] py-3"
+              class="w-full lg:w-auto text-[#141414] text-lg text-center lg:text-left font-semibold border border-[#e7e5e5] rounded-xl px-[48.5px] py-3"
             >
               {{
                 `${product?.price?.currency} ${formatCurrency(
