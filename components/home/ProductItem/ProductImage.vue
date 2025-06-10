@@ -26,7 +26,7 @@
     <!-- rate badge -->
     <div
       v-if="properties?.shouldShowRating"
-      class="absolute bottom-0 left-0 bg-[#fcfcfc] rounded-full px-1 py-[2px] flex items-center gap-1 shadow-md"
+      class="absolute bottom-0 left-0 bg-accent rounded-full px-1 py-[2px] flex items-center gap-1 shadow-md"
     >
       <p class="text-xs text-[#575757]">
         <span class="font-bold">
@@ -41,7 +41,7 @@
     <button
       v-if="properties?.hasFavouriteBtn"
       @click.stop="handleFavorite"
-      class="absolute top-0 right-0 bg-[#fcfcfc] flex items-center justify-center p-2 rounded-lg shadow-md"
+      class="absolute top-0 right-0 bg-accent flex items-center justify-center p-2 rounded-lg shadow-md"
     >
       <HeartIcon
         :class="[
@@ -51,7 +51,7 @@
     </button>
     <!-- add to cart button -->
     <button
-      class="absolute bottom-0 right-0 bg-[#fcfcfc] disabled:bg-red-400 text-sm text-[#575757] flex items-center justify-center p-2 rounded-lg shadow-md"
+      class="absolute bottom-0 right-0 bg-accent disabled:bg-red-400 text-sm text-[#575757] flex items-center justify-center p-2 rounded-lg shadow-md"
       :disabled="!product.isAvailable"
       :title="!product.isAvailable ? 'Out of stock' : ''"
       @click.stop="cartStore.addToCart(product)"

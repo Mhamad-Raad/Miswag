@@ -105,6 +105,4 @@ function shouldApplyGridMargin(index) {
 
 <!-- the followings need to be done -->
 
-<!-- add cart page -->
-<!-- add default variables to tailwind -->
 <!-- add empty state to home page -->

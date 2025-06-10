@@ -30,7 +30,7 @@
             backgroundColor: product?.merchant?.bgColor || '#00000',
           }"
         >
-          <h6 class="text-xs text-[#fcfcfc] font-medium">
+          <h6 class="text-xs text-accent font-medium">
             {{ product?.merchant?.title }}
           </h6>
 

@@ -56,7 +56,7 @@
             <div class="flex gap-[18px] items-baseline">
               <button
                 type="button"
-                class="py-[12px] px-[41.5px] text-[#e5223c] font-semibold border border-[#e5223c] rounded-2xl"
+                class="py-[12px] px-[41.5px] text-primary font-semibold border border-primary rounded-2xl"
                 @click="onClose"
               >
                 الغاء
@@ -64,8 +64,8 @@
 
               <button
                 type="button"
-                class="py-[12px] px-[41.5px] text-white font-semibold bg-[#e5223c] rounded-2xl"
-                @click="onClose"
+                class="py-[12px] px-[41.5px] text-white font-semibold bg-primary rounded-2xl"
+                @click="handleAddToCart"
               >
                 اضافة الى السلة
               </button>
@@ -89,10 +89,15 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+
+import { useCartStore } from '~/stores/useCartStore';
+
 import XIcon from '~/assets/Icons/X.vue';
+
 import { formatCurrency } from '~/utils/formatters';
 
 const selectedColor = ref(null);
+const cartStore = useCartStore();
 
 const { product, open, onClose } = defineProps({
   open: Boolean,
@@ -105,6 +110,13 @@ onMounted(() => {
     selectedColor.value = product.colors[0];
   }
 });
+
+const handleAddToCart = () => {
+  if (product?.id) {
+    cartStore.addToCart(product, 1);
+    onClose();
+  }
+};
 </script>
 
 <style scoped>
