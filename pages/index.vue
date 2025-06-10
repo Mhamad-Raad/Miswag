@@ -35,7 +35,7 @@
           :loading="false"
         />
         <ImageGrid
-          v-else-if="block.type === 'grid' && block?.content?.length"
+          v-else-if="block.type === 'grid' && !noProductBlocks"
           :grid="block"
           :loading="false"
         />
