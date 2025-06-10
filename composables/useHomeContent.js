@@ -10,6 +10,7 @@ export function useHomeContent() {
 
   const fetchContent = async () => {
     loading.value = true;
+    error.value = null;
     try {
       const { data } = await axios.get(
         'https://run.mocky.io/v3/f37b5d0d-ee4c-4d81-b91e-09c30ed62bb8'
