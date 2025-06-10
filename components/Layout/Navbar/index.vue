@@ -3,12 +3,23 @@
     <div
       class="w-full bg-[#dfdfe880] py-[18px] lg:pl-[100px] px-[29px] flex items-center justify-between lg:gap-[182px] rounded-3xl border border-[#e8e8e880]"
     >
-      <ActionIcons />
-      <div class="lg:w-full max-w-[761px] flex items-center justify-between gap-10">
-        <LangSwitcher />
-        <SearchBar />
+      <div :style="iconStyle" class="transition-all duration-500">
+        <ActionIcons />
+      </div>
+
+      <div
+        class="lg:w-full max-w-[761px] flex items-center justify-between gap-10"
+      >
+        <div :style="langStyle" class="transition-all duration-500 delay-200">
+          <LangSwitcher />
+        </div>
+        <div :style="searchStyle" class="transition-all duration-500 delay-300">
+          <SearchBar />
+        </div>
         <NuxtLink to="/">
-          <Logo class="w-[133px] h-[42px] ml-3" />
+          <div :style="logoStyle" class="transition-all duration-500 delay-400">
+            <Logo class="w-[133px] h-[42px] ml-3" />
+          </div>
         </NuxtLink>
       </div>
     </div>
@@ -16,8 +27,33 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 import ActionIcons from './ActionIcons.vue';
 import LangSwitcher from './LangSwitcher.vue';
 import SearchBar from './SearchBar.vue';
 import Logo from '../../UI/Logo.vue';
+
+const iconStyle = ref({ opacity: 0, transform: 'translateX(-30px)' });
+const langStyle = ref({ opacity: 0, transform: 'translateY(-20px)' });
+const searchStyle = ref({ opacity: 0, transform: 'translateY(-20px)' });
+const logoStyle = ref({ opacity: 0, transform: 'translateX(30px)' });
+
+onMounted(() => {
+  setTimeout(
+    () => (iconStyle.value = { opacity: 1, transform: 'translateX(0)' }),
+    100
+  );
+  setTimeout(
+    () => (langStyle.value = { opacity: 1, transform: 'translateY(0)' }),
+    200
+  );
+  setTimeout(
+    () => (searchStyle.value = { opacity: 1, transform: 'translateY(0)' }),
+    300
+  );
+  setTimeout(
+    () => (logoStyle.value = { opacity: 1, transform: 'translateX(0)' }),
+    400
+  );
+});
 </script>
