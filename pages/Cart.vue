@@ -38,9 +38,9 @@ import { useCartStore } from '~/stores/useCartStore';
 import EmptyState from '~/components/UI/EmptyState.vue';
 import ImageGridSkeleton from '~/components/UI/ImageGridSkeleton.vue';
 
-import TrashIcon from '~/assets/Icons/TrashIcon.vue';
-import PlusIcon from '~/assets/Icons/PlusIcon.vue';
-import MinusIcon from '~/assets/Icons/MinusIcon.vue';
+import TrashIcon from '~/assets/Icons/Trash.vue';
+import PlusIcon from '~/assets/Icons/Plus.vue';
+import MinusIcon from '~/assets/Icons/Minus.vue';
 
 const cartStore = useCartStore();
 const isLoaded = ref(false);

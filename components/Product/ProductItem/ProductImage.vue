@@ -6,58 +6,25 @@
       :src="product?.image"
       :alt="product?.name"
     />
-    <!-- discout badge -->
-    <p
-      v-if="product?.startTag"
-      class="absolute top-0 left-0 text-xs font-bold rounded-full px-1 py-[2px] flex gap-2 items-center"
-      :style="{
-        backgroundColor: product?.startTag.bgColor,
-        color: product?.startTag.color,
-      }"
-    >
-      {{ product?.startTag.title }}
-      <img
-        v-show="product?.startTag?.icon"
-        :src="product.startTag.icon"
-        alt="Limited Offer"
-        class="w-4 h-4 brightness-200"
-      />
-    </p>
-    <!-- rate badge -->
-    <div
-      v-if="properties?.shouldShowRating"
-      class="absolute bottom-0 left-0 bg-accent rounded-full px-1 py-[2px] flex items-center gap-1 shadow-md"
-    >
-      <p class="text-xs text-[#575757]">
-        <span class="font-bold">
-          {{ product?.rating || 0 }}
-        </span>
-        {{ `[${product?.ratingCount}]` }}
-      </p>
-      <StarIcon />
-    </div>
 
-    <!-- favorite button -->
-    <button
-      v-if="properties?.hasFavouriteBtn"
-      @click.stop="handleFavorite"
-      class="absolute top-0 right-0 bg-accent flex items-center justify-center p-2 rounded-lg shadow-md"
-    >
-      <HeartIcon
-        :class="[
-          isFavorited ? 'text-red-500 fill-red-500' : 'text-gray-400 fill-none',
-        ]"
-      />
-    </button>
-    <!-- add to cart button -->
-    <button
-      class="absolute bottom-0 right-0 bg-accent disabled:bg-red-400 text-sm text-[#575757] flex items-center justify-center p-2 rounded-lg shadow-md"
-      :disabled="!product.isAvailable"
-      :title="!product.isAvailable ? 'Out of stock' : ''"
-      @click.stop="cartStore.addToCart(product)"
-    >
-      <AddToCartIcon />
-    </button>
+    <DiscountBadge :startTag="product?.startTag" />
+
+    <RatingBadge
+      :shouldShow="properties?.shouldShowRating"
+      :rating="product?.rating || 0"
+      :ratingCount="product?.ratingCount"
+    />
+
+    <FavoriteButton
+      :show="properties?.hasFavouriteBtn"
+      :isActive="isFavorited"
+      @click="handleFavorite"
+    />
+
+    <AddToCartButton
+      :available="product.isAvailable"
+      @add="cartStore.addToCart(product)"
+    />
   </div>
 </template>
 
@@ -65,22 +32,10 @@
 import { useFavoritesStore } from '~/stores/useFavoritesStore';
 import { useCartStore } from '~/stores/useCartStore';
 
-import HeartIcon from '~/assets/Icons/Heart.vue';
-import AddToCartIcon from '~/assets/Icons/AddToCart.vue';
-import StarIcon from '~/assets/Icons/Star.vue';
-
-const favoritesStore = useFavoritesStore();
-onMounted(() => favoritesStore.load());
-
-function handleFavorite(e) {
-  e.stopPropagation();
-  favoritesStore.toggle(product.id);
-}
-
-const isFavorited = computed(() => favoritesStore.isFavorited(product.id));
-
-const cartStore = useCartStore();
-onMounted(() => cartStore.load());
+import DiscountBadge from '~/components/ui/DiscountBadge.vue';
+import RatingBadge from '~/components/ui/RatingBadge.vue';
+import FavoriteButton from '~/components/ui/FavoriteButton.vue';
+import AddToCartButton from '~/components/ui/AddToCartButton.vue';
 
 const props = defineProps({
   product: Object,
@@ -88,4 +43,19 @@ const props = defineProps({
 });
 
 const { product, properties } = props;
+
+const favoritesStore = useFavoritesStore();
+const cartStore = useCartStore();
+
+onMounted(() => {
+  favoritesStore.load();
+  cartStore.load();
+});
+
+const handleFavorite = (e) => {
+  e.stopPropagation();
+  favoritesStore.toggle(product.id);
+};
+
+const isFavorited = computed(() => favoritesStore.isFavorited(product.id));
 </script>
