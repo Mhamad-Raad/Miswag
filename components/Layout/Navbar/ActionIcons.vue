@@ -1,17 +1,16 @@
 <template>
   <div class="flex items-center gap-[28px]">
     <div class="flex items-center gap-[22px]">
-      <button
-        class="px-[14px] py-[11px] bg-[#ffefe9] rounded-2xl"
-        type="button"
-      >
-        <CartIcon />
-      </button>
+      <NuxtLink to="/cart" class="inline-flex">
+        <div class="px-[14px] py-[11px] bg-[#ffefe9] rounded-2xl">
+          <Notify :notificationNumber="favoritesStore.favorites.length">
+            <CartIcon />
+          </Notify>
+        </div>
+      </NuxtLink>
       <NuxtLink to="/favorites" class="inline-flex">
         <Notify :notificationNumber="favoritesStore.favorites.length">
-          <button @click="$router.push('/favorites')">
-            <HeartIcon />
-          </button>
+          <HeartIcon />
         </Notify>
       </NuxtLink>
     </div>
