@@ -21,11 +21,11 @@
       />
     </div>
 
-    <div v-else>
+    <TransitionGroup name="fade-scale" tag="div" class="space-y-3" appear>
       <div
         v-for="(block, index) in filteredBlocks"
         :key="index"
-        :class="['mb-3', shouldApplyGridMargin(index) ? 'mt-[42px]' : '']"
+        :class="shouldApplyGridMargin(index) ? 'mt-[42px]' : ''"
       >
         <ProductList
           v-if="block.type === 'products'"
@@ -35,12 +35,12 @@
           :loading="false"
         />
         <ImageGrid
-          v-if="block.type === 'grid' && block?.content?.length"
+          v-else-if="block.type === 'grid' && block?.content?.length"
           :grid="block"
           :loading="false"
         />
       </div>
-    </div>
+    </TransitionGroup>
 
     <ProductDetailsModal
       v-if="selectedProduct"
@@ -119,3 +119,22 @@ function shouldApplyGridMargin(index) {
   );
 }
 </script>
+
+<style scoped>
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+  transition: all 0.4s ease;
+}
+.fade-scale-enter-from {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.fade-scale-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+</style>
