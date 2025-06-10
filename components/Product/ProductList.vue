@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import ProductItem from '~/components/home/ProductItem/index.vue';
+import ProductItem from '~/components/Product/ProductItem/index.vue';
 import ProductSkeleton from '~/components/UI/ProductSkeleton.vue';
 
 const props = defineProps({

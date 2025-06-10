@@ -40,8 +40,8 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 
-import ProductList from '~/components/home/ProductList.vue';
-import ProductDetailsModal from '~/components/ProductDetailsModal.vue';
+import ProductList from '~/components/Product/ProductList.vue';
+import ProductDetailsModal from '~/components/Product/ProductDetailsModal.vue';
 import EmptyState from '~/components/UI/EmptyState.vue';
 
 import { useHomeContent } from '~/composables/useHomeContent';
