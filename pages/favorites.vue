@@ -2,6 +2,7 @@
   <div class="p-8">
     <h1 class="text-2xl font-bold mb-6 text-right">المفضلة</h1>
 
+    <!-- Loading State -->
     <ProductList
       v-if="loading"
       :products="[]"
@@ -10,24 +11,34 @@
       @open-details="openProductModal"
     />
 
-    <div
-      v-else-if="favoriteProducts.length === 0 && readyToCheckEmptyState"
-      class="text-center py-10"
-    >
-      <EmptyState
-        title="لا توجد منتجات مفضلة"
-        message="أضف بعض المنتجات إلى المفضلة لعرضها هنا لاحقًا."
-      />
-    </div>
+    <!-- Empty State with animation -->
+    <Transition name="fade-scale" appear>
+      <div
+        v-if="
+          !loading && favoriteProducts.length === 0 && readyToCheckEmptyState
+        "
+        class="text-center py-10"
+      >
+        <EmptyState
+          title="لا توجد منتجات مفضلة"
+          message="أضف بعض المنتجات إلى المفضلة لعرضها هنا لاحقًا."
+        />
+      </div>
+    </Transition>
 
-    <ProductList
-      v-else
-      :products="favoriteProducts"
-      :properties="productListProperties"
-      :loading="false"
-      @open-details="openProductModal"
-    />
+    <!-- Product List with animation -->
+    <Transition name="fade-scale" appear>
+      <div v-if="!loading && favoriteProducts.length > 0">
+        <ProductList
+          :products="favoriteProducts"
+          :properties="productListProperties"
+          :loading="false"
+          @open-details="openProductModal"
+        />
+      </div>
+    </Transition>
 
+    <!-- Modal -->
     <ProductDetailsModal
       v-if="selectedProduct"
       :open="!!selectedProduct"
@@ -77,3 +88,22 @@ const readyToCheckEmptyState = computed(() => {
   return !loading.value && allProducts.value.length > 0;
 });
 </script>
+
+<style scoped>
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+  transition: all 0.4s ease;
+}
+.fade-scale-enter-from {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.fade-scale-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+</style>
