@@ -13,9 +13,10 @@
 
 <script setup>
 import StarIcon from '~/assets/Icons/Star.vue';
+
 defineProps({
   shouldShow: Boolean,
-  rating: Number,
-  ratingCount: Number,
+  rating: String,
+  ratingCount: String,
 });
 </script>
