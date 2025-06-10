@@ -45,9 +45,7 @@
     >
       <HeartIcon
         :class="[
-          favoritesStore.isFavorited(product.id)
-            ? 'text-red-500 fill-red-500'
-            : 'text-gray-400 fill-none',
+          isFavorited ? 'text-red-500 fill-red-500' : 'text-gray-400 fill-none',
         ]"
       />
     </button>
@@ -56,6 +54,7 @@
       class="absolute bottom-0 right-0 bg-[#fcfcfc] disabled:bg-red-400 text-sm text-[#575757] flex items-center justify-center p-2 rounded-lg shadow-md"
       :disabled="!product.isAvailable"
       :title="!product.isAvailable ? 'Out of stock' : ''"
+      @click.stop="cartStore.addToCart(product)"
     >
       <AddToCartIcon />
     </button>
@@ -64,6 +63,7 @@
 
 <script setup>
 import { useFavoritesStore } from '~/stores/useFavoritesStore';
+import { useCartStore } from '~/stores/useCartStore';
 
 import HeartIcon from '~/assets/Icons/Heart.vue';
 import AddToCartIcon from '~/assets/Icons/AddToCart.vue';
@@ -78,6 +78,9 @@ function handleFavorite(e) {
 }
 
 const isFavorited = computed(() => favoritesStore.isFavorited(product.id));
+
+const cartStore = useCartStore();
+onMounted(() => cartStore.load());
 
 const props = defineProps({
   product: Object,
