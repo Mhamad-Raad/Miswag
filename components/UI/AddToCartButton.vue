@@ -12,7 +12,7 @@
 <script setup>
 import AddToCartIcon from '~/assets/Icons/AddToCart.vue';
 defineProps({ available: Boolean });
-defineEmits(['add']);
+const emit = defineEmits(['add']);
 const onAdd = () => {
   emit('add');
 };

@@ -59,7 +59,7 @@ import { useSearchStore } from '~/stores/useSearchStore';
 import ErrorState from '~/components/UI/ErrorState.vue';
 import EmptyState from '~/components/UI/EmptyState.vue';
 import ProductList from '~/components/Product/ProductList.vue';
-import ImageGrid from '~/components/ImageGrid.vue';
+import ImageGrid from '~/components/UI/ImageGrid.vue';
 import ProductDetailsModal from '~/components/Product/ProductDetailsModal.vue';
 
 const { contentBlocks, loading, error, refetch } = useHomeContent();

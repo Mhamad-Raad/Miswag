@@ -1,5 +1,8 @@
 <template>
-  <div class="flex flex-col items-center justify-center py-20 text-center">
+  <div
+    class="flex flex-col items-center justify-center py-20 text-center"
+    role="alert"
+  >
     <ErrorIllustrationIcon />
     <h2 class="text-lg font-bold text-red-600 mb-2">
       Oops! Something went wrong.
