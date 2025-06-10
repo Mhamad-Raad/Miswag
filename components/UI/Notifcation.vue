@@ -18,5 +18,4 @@ const { notificationNumber } = defineProps({
   },
 });
 
-console.log(notificationNumber);
 </script>

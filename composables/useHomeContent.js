@@ -15,8 +15,6 @@ export function useHomeContent() {
         'https://run.mocky.io/v3/f37b5d0d-ee4c-4d81-b91e-09c30ed62bb8'
       );
 
-      console.log('Fetched content:', data);
-
       contentBlocks.value = Array.isArray(data?.content)
         ? data.content.map((block) => ({
             ...block,

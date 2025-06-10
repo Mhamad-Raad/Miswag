@@ -25,5 +25,4 @@ const props = defineProps({
 });
 
 const { product, properties } = props;
-console.log('ProductItem props:', { product, properties });
 </script>

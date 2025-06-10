@@ -31,7 +31,6 @@ import HeartIcon from '~/assets/Icons/Heart.vue';
 const favoritesStore = useFavoritesStore();
 const cartStore = useCartStore();
 
-console.log('Favorites store:', favoritesStore);
 
 onMounted(() => {
   if (process.client) {
