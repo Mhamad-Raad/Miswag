@@ -2,12 +2,15 @@
   <div class="p-8">
     <div v-if="loading" class="mb-6">
       <ProductList
-        :products="[]"
-        :properties="{}"
+        :products="loadingPlaceholder.content"
+        :properties="loadingPlaceholder.properties"
         @open-details="() => {}"
         :loading="true"
       />
-      <ImageGrid :grid="{ content: [] }" :loading="true" />
+      <ImageGrid
+        :grid="{ content: loadingPlaceholder.content }"
+        :loading="true"
+      />
     </div>
 
     <div v-else-if="error">
@@ -65,6 +68,8 @@ import ProductDetailsModal from '~/components/Product/ProductDetailsModal.vue';
 const { contentBlocks, loading, error, refetch } = useHomeContent();
 const selectedProduct = ref(null);
 const searchStore = useSearchStore();
+
+const loadingPlaceholder = { content: [], properties: {} };
 
 function retryLoad() {
   refetch();
