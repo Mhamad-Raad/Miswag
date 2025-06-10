@@ -7,7 +7,9 @@
       <div class="w-full max-w-[761px] flex items-center gap-10">
         <LangSwitcher />
         <SearchBar />
-        <Logo class="w-[133px] h-[42px] ml-3" />
+        <NuxtLink to="/">
+          <Logo class="w-[133px] h-[42px] ml-3" />
+        </NuxtLink>
       </div>
     </div>
   </nav>

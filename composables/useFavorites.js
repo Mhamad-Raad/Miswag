@@ -1,4 +1,4 @@
-import { ref, computed, watchEffect } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 const FAVORITES_KEY = 'favoriteProducts';
 
@@ -6,14 +6,18 @@ export function useFavorites() {
   const favorites = ref(new Set());
 
   const loadFavorites = () => {
-    const stored = localStorage.getItem(FAVORITES_KEY);
-    if (stored) {
-      favorites.value = new Set(JSON.parse(stored));
+    if (process.client) {
+      const stored = localStorage.getItem(FAVORITES_KEY);
+      if (stored) {
+        favorites.value = new Set(JSON.parse(stored));
+      }
     }
   };
 
   const saveFavorites = () => {
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites.value]));
+    if (process.client) {
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites.value]));
+    }
   };
 
   const toggleFavorite = (productId) => {
@@ -29,7 +33,9 @@ export function useFavorites() {
     return favorites.value.has(productId);
   };
 
-  loadFavorites();
+  onMounted(() => {
+    loadFavorites();
+  });
 
   return {
     toggleFavorite,

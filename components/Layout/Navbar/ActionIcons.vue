@@ -7,9 +7,9 @@
       >
         <CartIcon />
       </button>
-      <button type="button">
+      <NuxtLink to="/favorites" class="inline-flex">
         <HeartIcon />
-      </button>
+      </NuxtLink>
     </div>
     <AuthButton />
   </div>

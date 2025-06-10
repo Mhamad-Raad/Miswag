@@ -45,7 +45,7 @@
     >
       <HeartIcon
         :class="[
-          isFavorited(product.id)
+          favoritesStore.isFavorited(product.id)
             ? 'text-red-500 fill-red-500'
             : 'text-gray-400 fill-none',
         ]"
@@ -63,18 +63,21 @@
 </template>
 
 <script setup>
-import { useFavorites } from '~/composables/useFavorites';
+import { useFavoritesStore } from '~/stores/useFavoritesStore';
 
 import HeartIcon from '~/assets/Icons/Heart.vue';
 import AddToCartIcon from '~/assets/Icons/AddToCart.vue';
 import StarIcon from '~/assets/Icons/Star.vue';
 
-const { toggleFavorite, isFavorited } = useFavorites();
+const favoritesStore = useFavoritesStore();
+onMounted(() => favoritesStore.load());
 
-const handleFavorite = (e) => {
+function handleFavorite(e) {
   e.stopPropagation();
-  toggleFavorite(props.product.id);
-};
+  favoritesStore.toggle(product.id);
+}
+
+const isFavorited = computed(() => favoritesStore.isFavorited(product.id));
 
 const props = defineProps({
   product: Object,

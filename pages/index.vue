@@ -105,7 +105,5 @@ function shouldApplyGridMargin(index) {
 
 <!-- the followings need to be done -->
 
-<!-- error -->
 <!-- show how many items are in cart from local storage in the navbar -->
-<!-- add favorites page and show in the navbar -->
 <!-- add default variables to tailwind -->
