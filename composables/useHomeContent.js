@@ -43,5 +43,6 @@ export function useHomeContent() {
     contentBlocks,
     loading,
     error,
+    refetch: fetchContent,
   };
 }

@@ -9,7 +9,9 @@
       />
       <ImageGrid :grid="block" :loading="true" />
     </div>
-    <div v-else-if="error">{{ error }}</div>
+    <div v-else-if="error">
+      <ErrorState :message="error" @retry="retryLoad" />
+    </div>
     <div v-else>
       <div
         v-for="(block, index) in filteredBlocks"
@@ -45,13 +47,18 @@ import { ref, computed } from 'vue';
 import { useHomeContent } from '~/composables/useHomeContent';
 import { useSearchStore } from '~/stores/useSearchStore';
 
+import ErrorState from '~/components/UI/ErrorState.vue';
 import ProductList from '~/components/home/ProductList.vue';
 import ImageGrid from '~/components/home/ImageGrid.vue';
 import ProductDetailsModal from '~/components/ProductDetailsModal.vue';
 
-const { contentBlocks, loading, error } = useHomeContent();
+const { contentBlocks, loading, error, refetch } = useHomeContent();
 const selectedProduct = ref(null);
 const searchStore = useSearchStore();
+
+function retryLoad() {
+  refetch();
+}
 
 const openProductModal = (product) => {
   selectedProduct.value = product;
