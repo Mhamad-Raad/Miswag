@@ -26,7 +26,15 @@
           <img :src="item.image" class="w-20 h-20 rounded object-cover" />
           <div class="flex-1 text-right">
             <h2 class="font-bold line-clamp-2" dir="rtl">{{ item.title }}</h2>
-            <p class="text-sm text-gray-600">الكمية: {{ item.quantity }}</p>
+            <p class="text-sm text-gray-600">{{ item.quantity }} :الكمية</p>
+            <p class="text-sm text-gray-600">
+              {{
+                `${formatCurrency(
+                  parseInt(item.price?.value) * parseInt(item.quantity)
+                )} ${item?.price?.currency}`
+              }}
+              :سعر
+            </p>
           </div>
           <div class="flex gap-2">
             <button @click="cartStore.increment(item.id)">
