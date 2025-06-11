@@ -152,5 +152,4 @@ function shouldApplyGridMargin(index) {
 <!-- TODOS -->
 
 <!-- Add Animation to Modal Product -->
-<!-- Add Cart Final Price -->
 <!-- Publish the project -->

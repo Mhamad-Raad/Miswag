@@ -14,8 +14,10 @@
         </Transition>
       </div>
 
-      <div
+      <TransitionGroup
         v-else
+        name="fade-scale"
+        tag="div"
         class="h-[400px] overflow-y-auto pr-2 custom-scroll flex flex-col gap-4"
       >
         <div
@@ -48,7 +50,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </TransitionGroup>
     </template>
 
     <div
@@ -96,8 +98,6 @@ onMounted(() => {
 
 const cartItems = computed(() => cartStore.cart);
 const readyToCheckEmptyState = computed(() => isLoaded.value);
-
-console.log('Cart items:', cartItems.value);
 
 const totalPrice = computed(() =>
   cartItems.value.reduce((sum, item) => {
