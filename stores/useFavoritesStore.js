@@ -11,6 +11,10 @@ export const useFavoritesStore = defineStore('favorites', () => {
     }
   }
 
+  function save() {
+    localStorage.setItem('favoriteProducts', JSON.stringify(favorites.value));
+  }
+
   function toggle(id) {
     const index = favorites.value.indexOf(id);
     if (index === -1) {
@@ -18,7 +22,7 @@ export const useFavoritesStore = defineStore('favorites', () => {
     } else {
       favorites.value.splice(index, 1);
     }
-    localStorage.setItem('favoriteProducts', JSON.stringify(favorites.value));
+    save();
   }
 
   function isFavorited(id) {

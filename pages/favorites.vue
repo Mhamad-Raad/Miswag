@@ -45,6 +45,7 @@
 </template>
 
 <script setup>
+import { useHead } from '#imports';
 import { ref, computed, onMounted } from 'vue';
 
 import ProductList from '~/components/Product/ProductList.vue';
@@ -53,6 +54,10 @@ import EmptyState from '~/components/UI/EmptyState.vue';
 
 import { useHomeContent } from '~/composables/useHomeContent';
 import { useFavoritesStore } from '~/stores/useFavoritesStore';
+
+useHead({
+  title: 'المفضلة | MyStore',
+});
 
 const { contentBlocks, loading } = useHomeContent();
 const favoritesStore = useFavoritesStore();

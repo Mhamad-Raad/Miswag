@@ -28,9 +28,13 @@
           <p class="text-sm text-gray-600">الكمية: {{ item.quantity }}</p>
         </div>
         <div class="flex gap-2">
-          <button @click="cartStore.increment(item.id)"><PlusIcon /></button>
-          <button @click="cartStore.decrement(item.id)"><MinusIcon /></button>
-          <button @click="cartStore.removeFromCart(item.id)">
+          <button @click="cartStore.increment(item.id)" title="زيادة الكمية">
+            <PlusIcon />
+          </button>
+          <button @click="cartStore.decrement(item.id)" title="تقليل الكمية">
+            <MinusIcon />
+          </button>
+          <button @click="cartStore.removeFromCart(item.id)" title="حذف المنتج">
             <TrashIcon />
           </button>
         </div>
@@ -40,6 +44,7 @@
 </template>
 
 <script setup>
+import { useHead } from '#imports';
 import { ref, computed, onMounted } from 'vue';
 
 import { useCartStore } from '~/stores/useCartStore';
@@ -49,6 +54,10 @@ import ImageGridSkeleton from '~/components/UI/ImageGridSkeleton.vue';
 import TrashIcon from '~/assets/Icons/Trash.vue';
 import PlusIcon from '~/assets/Icons/Plus.vue';
 import MinusIcon from '~/assets/Icons/Minus.vue';
+
+useHead({
+  title: 'My Cart | MyStore',
+});
 
 const cartStore = useCartStore();
 const isLoaded = ref(false);

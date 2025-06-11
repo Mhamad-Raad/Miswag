@@ -55,6 +55,7 @@
 </template>
 
 <script setup>
+import { useHead } from '#imports';
 import { ref, computed } from 'vue';
 import { useHomeContent } from '~/composables/useHomeContent';
 import { useSearchStore } from '~/stores/useSearchStore';
@@ -64,6 +65,10 @@ import EmptyState from '~/components/UI/EmptyState.vue';
 import ProductList from '~/components/Product/ProductList.vue';
 import ImageGrid from '~/components/UI/ImageGrid.vue';
 import ProductDetailsModal from '~/components/Product/ProductDetailsModal.vue';
+
+useHead({
+  title: 'Miswag | MyStore',
+});
 
 const { contentBlocks, loading, error, refetch } = useHomeContent();
 const selectedProduct = ref(null);
