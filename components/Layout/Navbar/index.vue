@@ -8,7 +8,7 @@
       </div>
 
       <div
-        class="lg:w-full max-w-[761px] flex items-center justify-between gap-10"
+        class="lg:w-full max-w-[761px] flex items-center justify-end gap-10"
       >
         <div :style="langStyle" class="transition-all duration-500 delay-200">
           <LangSwitcher />

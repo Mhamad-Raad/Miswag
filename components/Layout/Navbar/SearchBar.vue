@@ -14,15 +14,8 @@
 
 <script setup>
 import { useSearchStore } from '~/stores/useSearchStore';
-import { useDebounce } from '@vueuse/core';
-import { computed } from 'vue';
 
 import SearchIcon from '~/assets/Icons/Search.vue';
 
 const searchStore = useSearchStore();
-
-const debouncedQuery = useDebounce(
-  computed(() => searchStore.query),
-  300
-);
 </script>
