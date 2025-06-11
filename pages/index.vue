@@ -148,8 +148,3 @@ function shouldApplyGridMargin(index) {
   transform: scale(0.95);
 }
 </style>
-
-<!-- TODOS -->
-
-<!-- Add Animation to Modal Product -->
-<!-- Publish the project -->
