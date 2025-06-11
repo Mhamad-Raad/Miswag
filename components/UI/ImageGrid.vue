@@ -11,6 +11,7 @@
       v-for="(item, idx) in grid.content"
       :key="idx"
       :src="item.image"
+      loading="lazy"
       alt=""
       class="w-full h-[204px] object-cover"
     />
