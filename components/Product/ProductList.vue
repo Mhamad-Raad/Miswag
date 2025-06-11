@@ -7,7 +7,7 @@
       <template v-else>
         <ProductItem
           v-for="(product, index) in products"
-          :key="index"
+          :key="product.id"
           :product="product"
           :properties="properties"
           @click="$emit('open-details', product)"
