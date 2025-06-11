@@ -1,75 +1,19 @@
-# Nuxt Minimal Starter
+# 🛍️ Dynamic Product Blocks – Nuxt 3 + Tailwind CSS
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A responsive, performant Nuxt 3 project that dynamically renders block-based layouts (Products & Grids) from a JSON API. Designed for clean architecture, efficient rendering, and easy extensibility.
 
-## Setup
+---
 
-Make sure to install dependencies:
+## 🚀 Setup Instructions
 
 ```bash
-# npm
+# 1. Clone the repository
+git clone https://github.com/your-name/your-repo.git
+cd your-repo
+
+# 2. Install dependencies
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# 3. Run development server
 npm run dev
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
