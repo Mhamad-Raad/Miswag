@@ -18,7 +18,7 @@ defineProps({
   show: Boolean,
   isActive: Boolean,
 });
-defineEmits(['click']);
+const emit = defineEmits(['click']);
 const onClick = () => {
   emit('click');
 };

@@ -5,6 +5,7 @@
       :class="`aspect-[${parseFloat(properties?.imageRatio || '1')}/1]`"
       :src="product?.image"
       :alt="product?.name"
+      loading="lazy"
     />
 
     <DiscountBadge :startTag="product?.startTag" />
@@ -53,7 +54,6 @@ onMounted(() => {
 });
 
 const handleFavorite = (e) => {
-  e.stopPropagation();
   favoritesStore.toggle(product.id);
 };
 

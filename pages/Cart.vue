@@ -2,7 +2,7 @@
   <div class="p-8">
     <h1 class="text-2xl font-bold mb-6 text-right">عربة التسوق</h1>
 
-    <ImageGridSkeleton v-if="!readyToCheckEmptyState" count="1" cols="1" />
+    <ImageGridSkeleton v-if="!readyToCheckEmptyState" :count="1" :cols="1" />
 
     <Transition name="fade-scale" appear>
       <div
