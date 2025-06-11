@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8">
+  <div class="lg:p-8">
     <h1 class="text-2xl font-bold mb-6 text-right">المفضلة</h1>
 
     <ProductList
