@@ -7,5 +7,10 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_URL,
+    },
+  },
 });
 
