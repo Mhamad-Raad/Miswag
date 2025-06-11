@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <transition name="fade">
+    <transition name="fade" appear>
       <div
         v-if="open"
         class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
@@ -108,6 +108,7 @@ const { product, open, onClose } = defineProps({
   open: Boolean,
   product: Object,
   onClose: Function,
+  properties: Object,
 });
 
 onMounted(() => {
@@ -127,10 +128,14 @@ const handleAddToCart = () => {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease;
+  transition: opacity 0.25s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
 }
 </style>
