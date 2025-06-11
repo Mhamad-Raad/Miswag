@@ -1,6 +1,6 @@
 <template>
   <form
-    class="flex-grow max-w-[761px] px-[15px] py-[11px] hidden lg:flex items-center justify-end gap-[11px] bg-white border border-[#d0d0d0] rounded-2xl"
+    class="px-[15px] py-[11px] hidden lg:flex items-center justify-end gap-[11px] bg-white border border-[#d0d0d0] rounded-2xl"
   >
     <input
       type="text"

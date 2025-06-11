@@ -8,12 +8,15 @@
       </div>
 
       <div
-        class="lg:w-full max-w-[761px] flex items-center justify-end gap-10"
+        class="lg:w-full lg:max-w-[761px] xl:max-w-[1000px] flex items-center justify-end gap-10"
       >
         <div :style="langStyle" class="transition-all duration-500 delay-200">
           <LangSwitcher />
         </div>
-        <div :style="searchStyle" class="transition-all duration-500 delay-300">
+        <div
+          :style="searchStyle"
+          class="w-full transition-all duration-500 delay-300"
+        >
           <SearchBar />
         </div>
         <NuxtLink to="/">
