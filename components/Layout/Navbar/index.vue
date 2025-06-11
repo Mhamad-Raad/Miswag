@@ -8,7 +8,7 @@
       </div>
 
       <div
-        class="lg:w-full lg:max-w-[761px] xl:max-w-[1000px] flex items-center justify-end gap-10"
+        class="flex items-center justify-end lg:gap-10 lg:w-full lg:max-w-[761px] xl:max-w-[1000px]"
       >
         <div :style="langStyle" class="transition-all duration-500 delay-200">
           <LangSwitcher />
@@ -20,8 +20,11 @@
           <SearchBar />
         </div>
         <NuxtLink to="/">
-          <div :style="logoStyle" class="transition-all duration-500 delay-400">
-            <Logo class="w-[133px] h-[42px] ml-3" />
+          <div
+            :style="logoStyle"
+            class="w-auto transition-all duration-500 delay-400"
+          >
+            <Logo class="min-w-[133px] h-[42px]" />
           </div>
         </NuxtLink>
       </div>

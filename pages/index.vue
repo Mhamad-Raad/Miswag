@@ -1,5 +1,5 @@
 <template>
-  <div class="p-8">
+  <div class="lg:p-8">
     <div v-if="loading" class="mb-6">
       <ProductList
         :products="loadingPlaceholder.content"
