@@ -148,7 +148,3 @@ function shouldApplyGridMargin(index) {
   transform: scale(0.95);
 }
 </style>
-
-<!--  make the search bar in the navbar disapear when in cart page -->
-<!-- make the favorites be filtered based on the search bar -->
-<!-- add deployment link to read me also the new updates -->

@@ -33,6 +33,10 @@ A responsive, performant Nuxt 3 project that dynamically renders block-based lay
 - Modular, maintainable architecture.
 - Excellent scalability for future feature additions.
 
+### Deployment Link:
+
+check the Deployed version [here](https://miswag.vercel.app/)
+
 ### ♻️ Extensibility
 
 <ins>To add a new block type</ins>:
