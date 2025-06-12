@@ -6,7 +6,14 @@
 
 <script setup>
 useHead({
-  link: [{ rel: 'icon', type: 'image/png', href: '/Logo.png' }],
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/Logo.png',
+      fetchpriority: 'high',
+    },
+  ],
 });
 </script>
 
