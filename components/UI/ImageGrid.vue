@@ -13,7 +13,7 @@
       :src="item.image"
       loading="lazy"
       alt=""
-      class="w-full h-[204px] object-cover"
+      class="w-full h-[204px] object-fill"
     />
   </div>
 </template>
