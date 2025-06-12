@@ -13,21 +13,21 @@
     <Transition name="fade-scale" appear>
       <div
         v-if="
-          !loading && favoriteProducts.length === 0 && readyToCheckEmptyState
+          !loading && filteredFavorites.length === 0 && readyToCheckEmptyState
         "
         class="text-center py-10"
       >
         <EmptyState
-          title="لا توجد منتجات مفضلة"
-          message="أضف بعض المنتجات إلى المفضلة لعرضها هنا لاحقًا."
+          title="لا توجد نتائج"
+          message="لا توجد منتجات مفضلة تطابق اسم المنتج أو الماركة المدخلة."
         />
       </div>
     </Transition>
 
     <Transition name="fade-scale" appear>
-      <div v-if="!loading && favoriteProducts.length > 0">
+      <div v-if="!loading && filteredFavorites.length > 0">
         <ProductList
-          :products="favoriteProducts"
+          :products="filteredFavorites"
           :properties="productListProperties"
           :loading="false"
           @open-details="openProductModal"
@@ -54,6 +54,7 @@ import EmptyState from '~/components/UI/EmptyState.vue';
 
 import { useHomeContent } from '~/composables/useHomeContent';
 import { useFavoritesStore } from '~/stores/useFavoritesStore';
+import { useSearchStore } from '~/stores/useSearchStore';
 
 useHead({
   title: 'المفضلة | MyStore',
@@ -61,6 +62,7 @@ useHead({
 
 const { contentBlocks, loading } = useHomeContent();
 const favoritesStore = useFavoritesStore();
+const searchStore = useSearchStore();
 
 onMounted(() => favoritesStore.load());
 
@@ -84,6 +86,17 @@ const allProducts = computed(() =>
 const favoriteProducts = computed(() =>
   allProducts.value.filter((p) => favoritesStore.isFavorited(p.id))
 );
+
+const filteredFavorites = computed(() => {
+  const query = searchStore.query.toLowerCase().trim();
+  if (!query) return favoriteProducts.value;
+
+  return favoriteProducts.value.filter(
+    (product) =>
+      product.title?.toLowerCase().includes(query) ||
+      product.brand?.toLowerCase().includes(query)
+  );
+});
 
 const readyToCheckEmptyState = computed(() => {
   return !loading.value && allProducts.value.length > 0;
