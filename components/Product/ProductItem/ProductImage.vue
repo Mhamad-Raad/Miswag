@@ -33,10 +33,10 @@
 import { useFavoritesStore } from '~/stores/useFavoritesStore';
 import { useCartStore } from '~/stores/useCartStore';
 
-import DiscountBadge from '~/components/ui/DiscountBadge.vue';
-import RatingBadge from '~/components/ui/RatingBadge.vue';
-import FavoriteButton from '~/components/ui/FavoriteButton.vue';
-import AddToCartButton from '~/components/ui/AddToCartButton.vue';
+import DiscountBadge from '~/components/UI/DiscountBadge.vue';
+import RatingBadge from '~/components/UI/RatingBadge.vue';
+import FavoriteButton from '~/components/UI/FavoriteButton.vue';
+import AddToCartButton from '~/components/UI/AddToCartButton.vue';
 
 const props = defineProps({
   product: Object,
