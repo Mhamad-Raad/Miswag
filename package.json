@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "misswag-challenge-app",
   "private": true,
   "type": "module",
   "scripts": {
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.4",
     "tailwindcss": "^4.1.8"
   }
 }
+
