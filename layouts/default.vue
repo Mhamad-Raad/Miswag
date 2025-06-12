@@ -2,9 +2,10 @@
   <div class="min-h-screen flex flex-col">
     <Navbar />
 
-    <main class="px-3 lg:px-6 pt-36">
-      <slot></slot>
+    <main class="flex-1 px-3 lg:px-6 pt-36">
+      <slot />
     </main>
+
     <Footer />
   </div>
 </template>
