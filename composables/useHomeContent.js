@@ -1,10 +1,8 @@
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
-
 import { convertKeysToCamelCase } from '~/utils/formatters';
+import jsonData from '~/Data.json'; // adjust path if needed
 
 export function useHomeContent() {
-  const config = useRuntimeConfig();
   const contentBlocks = ref([]);
   const loading = ref(false);
   const error = ref(null);
@@ -14,7 +12,7 @@ export function useHomeContent() {
     error.value = null;
 
     try {
-      const { data } = await axios.get(config.public.apiUrl);
+      const data = jsonData;
 
       contentBlocks.value = Array.isArray(data?.content)
         ? data.content.map((block) => ({
